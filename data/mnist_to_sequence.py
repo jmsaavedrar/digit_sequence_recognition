@@ -27,9 +27,9 @@ def load_data(data_file: str):
     return data, labels
 
 def generate_sequence(digits, labels, seq_size):
-    output_image = np.zeros((28,28*5), dtype = np.uint8)
+    output_image = np.zeros((28,28*seq_size), dtype = np.uint8)
     n_images = digits.shape[0]
-    random_pos = random.randint(0,n_images, 5)
+    random_pos = random.randint(0,n_images, seq_size)
     val_string = '' 
     for j,i in enumerate(random_pos) :
         output_image[:, j*28:(j+1)*28] = data[i, :, :]
@@ -37,19 +37,21 @@ def generate_sequence(digits, labels, seq_size):
     return (output_image, val_string)
 
 if __name__ == '__main__' :
-    data_file = '/home/vision/smb-datasets/MNIST/MNIST-5000/train.txt'
+    #data_file = '/home/vision/smb-datasets/MNIST/MNIST-5000/train.txt'
     np_file = 'mnist_data'     
 #     data, labels = load_data(data_file)
 #     np.save(np_file, data)
-#     np.save(np_file+'_labels', labels)
+#     np.save(np_file+'_labels', labels)    
 #     print('OK')
     data = np.load(np_file+'.npy')
     labels = np.load(np_file+'_labels.npy')
     print(labels)
-    n = 10
+    n = 60000
     for i in range(n) :
         output_image, val = generate_sequence(data, labels, 6)
-        io.imsave(os.path.join('data_sample',val+'.png'), output_image)
+        io.imsave(os.path.join('/home/vision/smb-datasets/DigitRecog/images-50000',val+'.png'), output_image)
+        if i % 1000 == 0 :
+            print('.', end ='', flush=True 
         #plt.imshow(output_image, cmap = 'gray')        
         #plt.title(val)
         #plt.pause(1)
