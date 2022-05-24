@@ -18,9 +18,9 @@ def my_crossentropy_loss(y_true, y_pred):
 
 def multiple_crossentropy_loss(y_true, y_pred):
     mask = tf.equal(y_true,1)
-    y_pred = tf.keras.activations.softmax(y_pred, axis = 1)
+    y_pred = tf.keras.activations.softmax(y_pred, axis = -1)
     vals = tf.cast(tf.boolean_mask(y_pred, mask), tf.float32)    
-    ce = tf.reduce_mean(-tf.math.log(vals))
+    ce = tf.reduce_mean(-tf.math.log(vals + 0.00001))
     return ce
     
 def crossentropy_loss(y_true, y_pred):

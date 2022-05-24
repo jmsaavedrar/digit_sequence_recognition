@@ -53,7 +53,7 @@ if __name__ == '__main__' :
     if pargs.mode == 'train' : 
         tr_dataset = tf.data.TFRecordDataset(tfr_train_file)        
         tr_dataset = tr_dataset.shuffle(configuration.get_shuffle_size())
-        tr_dataset = tr_dataset.map(lambda x : data.parser_tfrecord(x, input_shape, mean_image, number_of_classes, with_augmentation = True));        
+        tr_dataset = tr_dataset.map(lambda x : data.parser_tfrecord(x, input_shape, mean_image, number_of_classes, with_augmentation = False));        
         tr_dataset = tr_dataset.batch(batch_size = configuration.get_batch_size())    
         
 
