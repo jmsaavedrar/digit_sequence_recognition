@@ -96,8 +96,7 @@ class BottleneckBlock(tf.keras.layers.Layer):
     """
     BottleneckBlock
     expansion rate = x4
-    """
-    
+    """    
     def __init__(self, filters, stride, use_projection = False, se_factor = 0, **kwargs):        
         super(BottleneckBlock, self).__init__(**kwargs)
         self.bn_0 = tf.keras.layers.BatchNormalization(name = 'bn_0')
@@ -179,7 +178,7 @@ class ResNetBackbone(tf.keras.Model):
     
     def __init__(self, block_sizes, filters, use_bottleneck = False, se_factor = 0, **kwargs) :
         super(ResNetBackbone, self).__init__(**kwargs)
-        self.conv_0 = tf.keras.layers.Conv2D(64, (7,7), strides = 2, padding = 'same', 
+        self.conv_0 = tf.keras.layers.Conv2D(filters[0], (7,7), strides = 2, padding = 'same', 
                                              kernel_initializer = 'he_normal', 
                                              name = 'conv_0', use_bias = False)
         

@@ -73,7 +73,7 @@ if __name__ == '__main__' :
         monitor='val_acc',
         save_freq = 'epoch',            
         )
-    model = resnet.RecogNet([3,4,6,3],[32,64,128,256], configuration.get_number_of_classes(), use_bottleneck = True)
+    model = resnet.RecogNet([3,4,6,3],[32,64,128,256], configuration.get_number_of_classes(), use_bottleneck = False)
     print('Model is Resnet')
     sys.stdout.flush()    
     #build the model indicating the input shape
